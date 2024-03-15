@@ -1,2 +1,2 @@
 # cluerium
-semantic analysis app of document data
+semantic analysis of document data
