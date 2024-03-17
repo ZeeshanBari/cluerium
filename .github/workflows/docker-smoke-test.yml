@@ -8,10 +8,11 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./frontend
+
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,7 +22,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v3
         with:
-          go-version-file: go.mod
+          go-version-file: frontend/go.mod
 
       - name: Fetch required Go modules
         run:  go mod download
