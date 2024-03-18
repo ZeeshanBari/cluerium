@@ -7,7 +7,7 @@ env:
   TF_CLOUD_ORGANIZATION: "zbari"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "cluerium"
-  CONFIG_DIRECTORY: "./terraform"
+  CONFIG_DIRECTORY: "./infrastructure"
 
 jobs:
   terraform:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./terraform
+        working-directory: ./infrastructure
     permissions:
       contents: read
       pull-requests: write
