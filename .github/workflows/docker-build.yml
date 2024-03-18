@@ -61,7 +61,19 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Push release to Docker Hub
+      - name: Push release to Docker Hub - base-image
+        uses: docker/build-push-action@v4
+        if: github.event_name != 'pull_request'
+        with:
+          push: true
+          file: Dockerfile
+          target: build-release-stage
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to:   type=local,dest=/tmp/.buildx-cache
+
+      - name: Push release to Docker Hub - multistage
         uses: docker/build-push-action@v4
         if: github.event_name != 'pull_request'
         with:
