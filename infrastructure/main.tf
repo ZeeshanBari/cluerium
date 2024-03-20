@@ -142,7 +142,6 @@ resource "aws_ecs_service" "cluerium_frontend_service" {
   }
 }
 
-# main.tf
 resource "aws_security_group" "service_security_group" {
   ingress {
     from_port = 0
