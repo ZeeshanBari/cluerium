@@ -47,6 +47,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           file: frontend/Dockerfile.multistage
+          push: true
+          provenance: false
           target: run-test-stage
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to:   type=local,dest=/tmp/.buildx-cache
