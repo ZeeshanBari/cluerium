@@ -3,7 +3,6 @@ name: Run a smoke test (CI)
 # The smoke test runs on *any* push to the repo and can also be triggered manually.
 # It does a simple build and test using Go toolchain directly in the GitHub runner.
 on:
-  push:
   workflow_dispatch:
   pull_request:
 
