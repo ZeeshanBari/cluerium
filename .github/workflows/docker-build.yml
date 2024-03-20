@@ -8,7 +8,7 @@ on:
       - 'v*'
 
 jobs:
-  build-and-test:
+  Build, Test, and Upload:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -46,7 +46,7 @@ jobs:
       - name: Build app and run tests in Docker
         uses: docker/build-push-action@v4
         with:
-          file: frontend/Dockerfile
+          file: frontend/Dockerfile.multistage
           target: run-test-stage
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to:   type=local,dest=/tmp/.buildx-cache
