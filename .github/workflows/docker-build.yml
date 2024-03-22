@@ -50,10 +50,14 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: List files in current working directory
+        run: ls -a
+
       - name: Push release to Docker Hub - multistage
         uses: docker/build-push-action@v4
         if: github.event_name != 'pull_request'
         with:
+          context: .
           push: true
           file: frontend/Dockerfile.multistage
           target: build-release-stage
