@@ -57,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v4
         if: github.event_name != 'pull_request'
         with:
-          context: .
+          context: frontend/
           push: true
           file: frontend/Dockerfile.multistage
           target: build-release-stage
