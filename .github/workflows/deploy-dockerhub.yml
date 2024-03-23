@@ -3,7 +3,7 @@ name: Release to Docker Hub if tests OK (CI/CD)
 on:
   push:
     branches:
-      - 'main'
+      - 'main:dockerhub'
     tags:
       - 'v*'
   pull_request:
