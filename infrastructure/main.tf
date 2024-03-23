@@ -20,7 +20,7 @@ resource "aws_ecs_cluster" "cluerium_cluster" {
 }
 
 resource "aws_ecs_task_definition" "cluerium_task" {
-  family                   = "cluerium_task"
+  family                   = "cluerium_task_family"
   container_definitions    = jsonencode([
     {
       "name": "cluerium_frontend_task",
@@ -28,8 +28,8 @@ resource "aws_ecs_task_definition" "cluerium_task" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 5000,
-          "hostPort": 5000
+          "containerPort": 8080,
+          "hostPort": 8080
         }
       ],
       "memory": 512,
@@ -131,8 +131,8 @@ resource "aws_ecs_service" "cluerium_frontend_service" {
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.target_group.arn}" # Reference the target group
-    container_name   = "${aws_ecs_task_definition.cluerium_task.family}"
-    container_port   = 5000 # Specify the container port
+    container_name   = "cluerium_frontend_task"
+    container_port   = 8080 # Specify the container port
   }
 
   network_configuration {
