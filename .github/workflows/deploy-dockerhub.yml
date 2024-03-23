@@ -6,9 +6,14 @@ on:
       - 'main:dockerhub'
     tags:
       - 'v*'
+  workflow_run:
+    workflows: ['Dependabot PR Check']
+    types:
+      - completed
+  
 
 jobs:
-  build-test-upload:
+  dockerhub-build-test-upload:
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -3,10 +3,13 @@ name: Deploy to ECR
 # Controls when the workflow will run
 
 on:
-  workflow_dispatch:
   push:
     branches: 
       - main
+  workflow_run:
+    workflows: ['Dependabot PR Check']
+    types:
+      - completed
 
 jobs:
   build:

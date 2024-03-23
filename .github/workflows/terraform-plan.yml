@@ -2,6 +2,10 @@ name: "Terraform Plan"
 
 on:
   pull_request:
+  workflow_run:
+    workflows: ['Dependabot PR Check']
+    types:
+      - completed
 
 env:
   TF_CLOUD_ORGANIZATION: "zbari"
