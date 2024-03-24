@@ -1,11 +1,12 @@
 name: Release to Docker Hub if tests OK (CI/CD)
 
 on:
-  push:
+  pull_request:
     branches:
       - 'main:dockerhub'
     tags:
       - 'v*'
+    types: [closed]
   workflow_run:
     workflows: ['Dependabot PR Check']
     types:
@@ -14,6 +15,7 @@ on:
 
 jobs:
   dockerhub-build-test-upload:
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     defaults:
       run:
